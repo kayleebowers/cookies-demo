@@ -11,8 +11,11 @@ app.use((req, res, next) => {
     next();
 })
 
+// check that cookie is returned to server
 app.get("/", (req, res) => {
-    res.send("Hello test");
+    let responseText = "Hello, ";
+    if (cookies) responseText += cookies.get("name");
+    res.send(responseText);
 });
 
 app.listen(8080, () => {
